@@ -13,4 +13,6 @@
 # git push
 # npm install express --save
 # npm install body-parser --save
+# npm install http he --save
+# npm install nodemon --save-dev
 ```

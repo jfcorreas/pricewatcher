@@ -1,4 +1,4 @@
-var items = require('../../backend/Items');
+var items = require('../services/items-service');
 
 exports.items = function(req, res){
   res.status(501).end();
