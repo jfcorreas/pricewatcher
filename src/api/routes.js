@@ -1,6 +1,6 @@
 var express   = require('express');
 
-var items = require('../backend/Items');
+var itemsController = require('./controllers/item');
 
 var router = express.Router();
 
@@ -14,17 +14,9 @@ router.get('/', function(req, res) {
     res.json({ message: 'HURRA! welcome to our api!' });
 });
 
-router.route('/articles')
-  .get(function(req, res){
-    res.status(501).end();
-  });
+router.route('/items').get(itemsController.items);
 
-router.route('/articles/:id')
-  .get(function(req, res){
-    res.send(items.getItem(req.params.id,'eci')).status(200).end();
-  })
-  .put(function(req, res){
-    res.send(items.checkItem(req.params.id,'eci')).status(200).end();
-  });
+router.route('/items/:id').get(itemsController.detail);
+router.route('/items/:id').put(itemsController.update);
 
  module.exports = router;
