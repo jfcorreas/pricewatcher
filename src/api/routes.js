@@ -1,8 +1,8 @@
-var express   = require('express');
+const express   = require('express');
 
-var itemsController = require('./controllers/items-controller');
+const itemsController = require('./controllers/items-controller');
 
-var router = express.Router();
+const router = express.Router();
 
 // Middleware only for Development
 /*router.use(function(req, res, next) {
@@ -15,7 +15,6 @@ router.get('/', function(req, res) {
 });
 
 router.route('/items').get(itemsController.items);
-
 router.route('/items/:id').get(itemsController.detail);
 router.route('/items/:id').put(itemsController.update);
 

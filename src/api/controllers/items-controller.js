@@ -1,13 +1,13 @@
-var items = require('../services/items-service');
+const itemsService = require('../services/items-service');
 
 exports.items = function(req, res){
-  res.status(501).end();
+  res.send(itemsService.listItems()).status(501).end();
 };
 
 exports.detail = function(req, res){
-  res.send(items.getItem(req.params.id,'eci')).status(200).end();
+  res.send(itemsService.getItem(req.params.id,'eci')).status(501).end();
 };
 
 exports.update = function(req, res){
-  res.send(items.checkItem(req.params.id,'eci')).status(200).end();
+  res.send(itemsService.checkItem(req.params.id,'eci')).status(501).end();
 };

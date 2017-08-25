@@ -1,13 +1,13 @@
-var express   = require('express');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override')
+const express   = require('express');
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override')
 
-var router = require('./routes');
+const router = require('./routes');
 
-var port = process.env.port || 8080;
-var mode = process.env.NODE_ENV || 'debug';
+const port = process.env.port || 8080;
+const mode = process.env.NODE_ENV || 'debug';
 
-var api       = express();
+const api       = express();
 
 api.use(bodyParser.urlencoded({extended: true}));
 api.use(bodyParser.json());
