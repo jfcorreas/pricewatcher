@@ -4,11 +4,16 @@ const itemsController = require('./controllers/items-controller');
 
 const router = express.Router();
 
+const mode = process.env.NODE_ENV || 'debug';
+
 // Middleware only for Development
-/*router.use(function(req, res, next) {
-  console.log(req.headers);
-  next();
-});*/
+if (mode === 'debug'){
+  router.use(function(req, res, next) {
+    console.log(req.headers);
+    console.log(req.body);
+    next();
+  });
+}
 
 router.get('/', function(req, res) {
     res.json({ message: 'HURRA! welcome to our api!' });
@@ -16,6 +21,7 @@ router.get('/', function(req, res) {
 
 router.route('/items').get(itemsController.items);
 router.route('/items/:id').get(itemsController.detail);
+router.route('/items').post(itemsController.insert);
 router.route('/items/:id').put(itemsController.update);
 
  module.exports = router;

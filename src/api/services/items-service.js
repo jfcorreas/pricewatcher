@@ -2,10 +2,13 @@ const items = {
   listItems :function () {
     return ("TODO: list all items in database");
   },
-  checkItem : function(item, store) {
-    return ("TODO: check item " + item + " info in store and update in database ");
+  checkItem : function(itemId) {
+    return ("TODO: check item with Id=" + itemId + " info in stores and update in database ");
   },
-  getItem : function (item, store) {
+  saveItem : function (item) {
+    return ("TODO: save item " + item.name + " in database ");
+  },
+  getItem : function (item) {
     return ("TODO: get item " + item + " info from database ");
   }
 }

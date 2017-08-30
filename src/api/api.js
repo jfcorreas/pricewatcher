@@ -24,7 +24,6 @@ api.get('*', function(req,res) {
   res.redirect('/api/v1');
 });
 
-
 api.listen(port);
 console.log('API working on ' + mode + ' mode');
 console.log('Watch the prices on port '+ port);

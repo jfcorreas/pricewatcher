@@ -5,9 +5,13 @@ exports.items = function(req, res){
 };
 
 exports.detail = function(req, res){
-  res.send(itemsService.getItem(req.params.id,'eci')).status(501).end();
+  res.send(itemsService.getItem(req.params.id)).status(501).end();
+};
+
+exports.insert = function(req, res){
+  res.send(itemsService.saveItem(req.body)).status(501).end();
 };
 
 exports.update = function(req, res){
-  res.send(itemsService.checkItem(req.params.id,'eci')).status(501).end();
+  res.send(itemsService.checkItem(req.params.id)).status(501).end();
 };
