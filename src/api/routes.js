@@ -1,6 +1,7 @@
 const express   = require('express');
 
 const itemsController = require('./controllers/items-controller');
+const storesController = require('./controllers/stores-controller');
 
 const router = express.Router();
 
@@ -24,4 +25,8 @@ router.route('/items/:id').get(itemsController.detail);
 router.route('/items').post(itemsController.insert);
 router.route('/items/:id').put(itemsController.update);
 
- module.exports = router;
+router.route('/stores').get(storesController.stores);
+router.route('/stores/:id').get(storesController.detail);
+router.route('/stores').post(storesController.insert);
+
+module.exports = router;

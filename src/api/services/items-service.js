@@ -8,8 +8,8 @@ const items = {
   saveItem : function (item) {
     return ("TODO: save item " + item.name + " in database ");
   },
-  getItem : function (item) {
-    return ("TODO: get item " + item + " info from database ");
+  getItem : function (itemId) {
+    return ("TODO: get item " + itemId + " info from database ");
   }
 }
 
