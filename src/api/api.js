@@ -12,10 +12,6 @@ const config = require('./config')[mode];
 
 const api       = express();
 
-/*mongoose.connect(config.mongodbURI, config.mongodb_options);
-const conn = mongoose.connection;
-conn.on('error',console.error.bind(console, 'connection error:'));*/
-
 mongoose.connection.on("connected", function(ref){
   console.log('Mongoose connected to: ' + config.mongodbURI);
 
@@ -61,7 +57,7 @@ var gracefulExit = function() {
 process.on('SIGINT', gracefulExit).on('SIGTERM', gracefulExit);
 
 try {
-  mongoose.connect(config.mongodbURI, config.mongodb_options);
+  mongoose.connect(config.mongodbURI, config.mongodbOptions);
   console.log('Trying to connect to DB...');
 } catch (err) {
   console.log("Sever initialization failed " , err.message);

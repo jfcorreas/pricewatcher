@@ -5,7 +5,7 @@ var StoreSchema   = new Schema({
     fullname: String,
     storeId: String,
     hostURL: String,
-    port: {type: number, default: 80},
+    port: {type: Number, default: 80},
     categories: [{
       name: String,
       url: String

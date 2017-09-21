@@ -1,5 +1,5 @@
 exports.production = {
-  mongodb_options : {
+  mongodbOptions : {
       server:
         { socketOptions: {
             keepAlive: 300000,
@@ -15,7 +15,7 @@ exports.production = {
 }
 
 exports.debug = {
-  mongodb_options : {
+  mongodbOptions : {
     useMongoClient: true,
     socketTimeoutMS: 30000,
     keepAlive: true,
