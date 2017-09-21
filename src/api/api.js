@@ -57,6 +57,7 @@ var gracefulExit = function() {
 process.on('SIGINT', gracefulExit).on('SIGTERM', gracefulExit);
 
 try {
+  mongoose.Promise = global.Promise;
   mongoose.connect(config.mongodbURI, config.mongodbOptions);
   console.log('Trying to connect to DB...');
 } catch (err) {
