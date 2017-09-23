@@ -1,15 +1,22 @@
 let Store     = require('../models/store');
 
 const stores = {
+  
   liststores :function () {
-    return ("TODO: list all stores in database");
+    return new Promise(function (resolve, reject){
+      Store.find(function(err, stores) {
+        if (err)
+            reject(err);
+
+        resolve(stores);
+        });
+    });
   },
 
   savestore : function (storeReq) {
     return new Promise(function (resolve, reject) {
       let store = fillStore(storeReq);
       store.save(function(err) {
-        console.log('Store saving...');
         if (err)
           reject(err);
 
