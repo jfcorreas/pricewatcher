@@ -1,7 +1,7 @@
 let Store     = require('../models/store');
 
 const stores = {
-  
+
   liststores :function () {
     return new Promise(function (resolve, reject){
       Store.find(function(err, stores) {
@@ -15,7 +15,7 @@ const stores = {
 
   savestore : function (storeReq) {
     return new Promise(function (resolve, reject) {
-      let store = fillStore(storeReq);
+      let store = createStore(storeReq);
       store.save(function(err) {
         if (err)
           reject(err);
@@ -26,13 +26,28 @@ const stores = {
   },
 
   getstore : function (storeId) {
-    return ("TODO: get store " + storeId + " info from database ");
+    return new Promise(function (resolve, reject) {
+      Store.findOne({storeId: 'eci'}, function (err, store) {
+        if (err)
+          reject(err);
+
+        resolve(store);
+      });
+    });
   }
 }
 
+/*Bear.remove({
+            _id: req.params.bear_id
+        }, function(err, bear) {
+            if (err)
+                res.send(err);
+
+            res.json({ message: 'Successfully deleted' });*/
+
 module.exports = stores;
 
-function fillStore (storeReq) {
+function createStore (storeReq) {
   let store = new Store();
   store.fullname = storeReq.fullname;
   store.storeId = storeReq.storeId;

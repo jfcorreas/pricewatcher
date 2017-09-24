@@ -3,7 +3,7 @@ var Schema       = mongoose.Schema;
 
 var StoreSchema   = new Schema({
     fullname: String,
-    storeId: String,
+    storeId: {type: String, unique: true},
     hostURL: String,
     port: {type: Number, default: 80},
     categories: [{

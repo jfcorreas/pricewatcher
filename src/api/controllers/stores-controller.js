@@ -10,7 +10,12 @@ exports.stores = function(req, res){
 };
 
 exports.detail = function(req, res){
-  res.send(storesService.getstore(req.params.id)).status(501).end();
+  let result = storesService.getstore(req.params.id);
+  result.then( function (value) {
+    res.send(value).status(200).end();
+  }, function (reason) {
+    res.send(reason).status(400).end();
+  });
 };
 
 exports.insert = function(req, res){
