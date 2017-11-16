@@ -34,7 +34,19 @@ const stores = {
         resolve(store);
       });
     });
-  }
+  },
+
+  updatestore : function (storeId, storeReq) {
+    return new Promise(function (resolve, reject) {
+      //let update = { $set: {fullname: storeReq.fullname}}
+      Store.findByIdAndUpdate(storeId, storeReq, function(err) {
+        if (err)
+          reject(err);
+
+        resolve('Store updated!');
+      });
+    });
+  },
 }
 
 /*Bear.remove({

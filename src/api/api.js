@@ -38,7 +38,8 @@ mongoose.connection.on("connected", function(ref){
 
 // If the connection throws an error
 mongoose.connection.on("error", function(err) {
-  console.error('Failed to connect to DB: ' + config.mongodbURI + ' on startup ', err);
+  console.error('Failed to connect to DB: ' + config.mongodbURI +
+                ' on startup ', err);
 });
 
 // When the connection is disconnected
@@ -48,7 +49,8 @@ mongoose.connection.on('disconnected', function () {
 
 var gracefulExit = function() {
   mongoose.connection.close(function () {
-    console.log('Mongoose connection with DB: ' + mode + ' is disconnected through app termination');
+    console.log('Mongoose connection with DB: ' + mode +
+                ' is disconnected through app termination');
     process.exit(0);
   });
 }

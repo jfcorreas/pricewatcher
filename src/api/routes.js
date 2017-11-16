@@ -28,5 +28,6 @@ router.route('/items/:id').put(itemsController.update);
 router.route('/stores').get(storesController.stores);
 router.route('/stores/:id').get(storesController.detail);
 router.route('/stores').post(storesController.insert);
+router.route('/stores/:id').put(storesController.update);
 
 module.exports = router;
