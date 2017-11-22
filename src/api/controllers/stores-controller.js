@@ -19,7 +19,7 @@ exports.detail = function(req, res){
 };
 
 exports.insert = function(req, res){
-  let result = storesService.savestore(req.body);
+  let result = storesService.insertstore(req.body);
   result.then( function (value) {
     res.send(value).status(201).end();
   }, function (reason) {
@@ -30,7 +30,15 @@ exports.insert = function(req, res){
 exports.update = function(req, res){
   let result = storesService.updatestore(req.params.id, req.body);
   result.then( function (value) {
-    res.send(value).status(201).end();
+    res.send(value).status(200).end();
+  }, function (reason) {
+    res.send(reason).status(400).end();
+  });
+};
+exports.remove = function(req, res){
+  let result = storesService.removestore(req.params.id);
+  result.then( function (value) {
+    res.send(value).status(200).end();
   }, function (reason) {
     res.send(reason).status(400).end();
   });

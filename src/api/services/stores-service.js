@@ -13,7 +13,7 @@ const stores = {
     });
   },
 
-  savestore : function (storeReq) {
+  insertstore : function (storeReq) {
     return new Promise(function (resolve, reject) {
       let store = createStore(storeReq);
       store.save(function(err) {
@@ -27,7 +27,7 @@ const stores = {
 
   getstore : function (storeId) {
     return new Promise(function (resolve, reject) {
-      Store.findOne({storeId: 'eci'}, function (err, store) {
+      Store.findOne({storeId: storeId}, function (err, store) {
         if (err)
           reject(err);
 
@@ -38,8 +38,7 @@ const stores = {
 
   updatestore : function (storeId, storeReq) {
     return new Promise(function (resolve, reject) {
-      //let update = { $set: {fullname: storeReq.fullname}}
-      Store.findByIdAndUpdate(storeId, storeReq, function(err) {
+      Store.findOneAndUpdate({storeId: storeId}, storeReq, function(err) {
         if (err)
           reject(err);
 
@@ -47,6 +46,17 @@ const stores = {
       });
     });
   },
+
+  removestore : function (storeId) {
+    return new Promise(function (resolve, reject) {
+      Store.remove({storeId: storeId}, function(err) {
+        if (err)
+          reject(err);
+
+        resolve('Store deleted!');
+      });
+    });
+  }
 }
 
 /*Bear.remove({

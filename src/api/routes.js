@@ -29,5 +29,6 @@ router.route('/stores').get(storesController.stores);
 router.route('/stores/:id').get(storesController.detail);
 router.route('/stores').post(storesController.insert);
 router.route('/stores/:id').put(storesController.update);
+router.route('/stores/:id').delete(storesController.remove);
 
 module.exports = router;
