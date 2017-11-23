@@ -2,8 +2,8 @@ var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
 var StoreSchema   = new Schema({
-    fullname: String,
     storeId: {type: String, unique: true},
+    fullname: String,
     hostURL: String,
     port: {type: Number, default: 80},
     categories: [{
