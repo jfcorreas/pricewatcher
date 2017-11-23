@@ -6,12 +6,16 @@ var ItemSchema   = new Schema({
     category: String,
     brand: String,
     model: String,
-    url: String,
+    links: [{
+      store: String,
+      url: String
+    }],
     registeredPrices: [{
-      fullname: String,
+      store: String,
       price: Number,
       discount: Number,
+      date: {type: Date, default: new Date()}
     }]
 });
 
-module.exports = mongoose.model('Item', StoreSchema);
+module.exports = mongoose.model('Item', ItemSchema);

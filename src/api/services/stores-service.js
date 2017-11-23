@@ -2,7 +2,7 @@ let Store     = require('../models/store');
 
 const stores = {
 
-  liststores :function () {
+  listStores :function () {
     return new Promise(function (resolve, reject){
       Store.find(function(err, stores) {
         if (err)
@@ -13,7 +13,7 @@ const stores = {
     });
   },
 
-  insertstore : function (storeReq) {
+  insertStore : function (storeReq) {
     return new Promise(function (resolve, reject) {
       let store = createStore(storeReq);
       store.save(function(err) {
@@ -25,7 +25,7 @@ const stores = {
     });
   },
 
-  getstore : function (storeId) {
+  getStore : function (storeId) {
     return new Promise(function (resolve, reject) {
       Store.findOne({storeId: storeId}, function (err, store) {
         if (err)
@@ -36,7 +36,7 @@ const stores = {
     });
   },
 
-  updatestore : function (storeId, storeReq) {
+  updateStore : function (storeId, storeReq) {
     return new Promise(function (resolve, reject) {
       Store.findOneAndUpdate({storeId: storeId}, storeReq, function(err) {
         if (err)
@@ -47,25 +47,17 @@ const stores = {
     });
   },
 
-  removestore : function (storeId) {
+  removeStore : function (storeId) {
     return new Promise(function (resolve, reject) {
       Store.remove({storeId: storeId}, function(err) {
         if (err)
           reject(err);
 
-        resolve('Store deleted!');
+        resolve('Store succesfully deleted!');
       });
     });
   }
 }
-
-/*Bear.remove({
-            _id: req.params.bear_id
-        }, function(err, bear) {
-            if (err)
-                res.send(err);
-
-            res.json({ message: 'Successfully deleted' });*/
 
 module.exports = stores;
 
