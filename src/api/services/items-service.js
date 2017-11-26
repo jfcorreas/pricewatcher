@@ -30,7 +30,14 @@ const items = {
   },
 
   getItem : function (itemId) {
-    return ("TODO: get item " + itemId + " info from database ");
+    return new Promise(function (resolve, reject) {
+      Item.findOne({itemId: itemId}, function (err, item) {
+        if (err)
+          reject(err);
+
+        resolve(item);
+      });
+    });
   }
 }
 
