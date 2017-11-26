@@ -26,6 +26,15 @@ exports.insert = function(req, res){
   });
 };
 
+exports.remove = function(req, res){
+  let result = ItemsService.removeItem(req.params.id);
+  result.then( function (value) {
+    res.send(value).status(200).end();
+  }, function (reason) {
+    res.send(reason).status(400).end();
+  });
+};
+
 exports.update = function(req, res){
   res.send(ItemsService.checkItem(req.params.id)).status(501).end();
 };

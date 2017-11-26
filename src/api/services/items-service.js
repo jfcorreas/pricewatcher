@@ -38,6 +38,17 @@ const items = {
         resolve(item);
       });
     });
+  },
+
+  removeItem : function (itemId) {
+    return new Promise(function (resolve, reject) {
+      Item.remove({itemId: itemId}, function(err) {
+        if (err)
+          reject(err);
+
+        resolve('Item succesfully deleted!');
+      });
+    });
   }
 }
 
