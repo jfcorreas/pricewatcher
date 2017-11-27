@@ -35,6 +35,7 @@ exports.update = function(req, res){
     res.send(reason).status(400).end();
   });
 };
+
 exports.remove = function(req, res){
   let result = StoresService.removeStore(req.params.id);
   result.then( function (value) {

@@ -40,6 +40,17 @@ const items = {
     });
   },
 
+  updateItem : function (itemId, itemReq) {
+    return new Promise(function (resolve, reject) {
+      Item.findOneAndUpdate({itemId: itemId}, itemReq, function(err) {
+        if (err)
+          reject(err);
+
+        resolve('Item updated!');
+      });
+    });
+  },
+
   removeItem : function (itemId) {
     return new Promise(function (resolve, reject) {
       Item.remove({itemId: itemId}, function(err) {
