@@ -60,6 +60,31 @@ const items = {
         resolve('Item succesfully deleted!');
       });
     });
+  },
+
+  addLink : function (itemId, itemReq) {
+    return new Promise(function (resolve, reject) {
+      Item.findOne({itemId: itemId}, function(err, item) {
+        if (err)
+          reject(err);
+        if (itemReq.store && itemReq.url) {
+          if (item.links.includes(itemReq.store)) {
+            reject('This link exists')
+          } else {
+            let link = {store: itemReq.store, url:itemReq.url};
+
+            item.links.push(link);
+            item.save(function(err){
+              if (err)
+              reject(err);
+              resolve('Link added succesfully');
+            });
+          }
+        } else {
+          reject('Invalid data in post: you must send a valid link');
+        }
+      });
+    });
   }
 }
 

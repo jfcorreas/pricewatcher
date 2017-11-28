@@ -43,3 +43,12 @@ exports.remove = function(req, res){
     res.send(reason).status(400).end();
   });
 };
+
+exports.addLink = function(req, res){
+  let result = ItemsService.addLink(req.params.id, req.body);
+  result.then( function (value) {
+    res.send(value).status(201).end();
+  }, function (reason) {
+    res.send(reason).status(400).end();
+  });
+};
