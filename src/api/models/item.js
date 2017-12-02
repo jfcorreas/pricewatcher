@@ -7,7 +7,7 @@ var ItemSchema   = new Schema({
     brand: String,
     model: String,
     links: [{
-      store: String,
+      store: {type: String, unique: true},
       url: String
     }],
     registeredPrices: [{

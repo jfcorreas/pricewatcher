@@ -67,22 +67,18 @@ const items = {
       Item.findOne({itemId: itemId}, function(err, item) {
         if (err)
           reject(err);
-        if (itemReq.store && itemReq.url) {
-          if (item.links.includes(itemReq.store)) {
-            reject('This link exists')
-          } else {
-            let link = {store: itemReq.store, url:itemReq.url};
-
-            item.links.push(link);
-            item.save(function(err){
-              if (err)
-              reject(err);
-              resolve('Link added succesfully');
-            });
-          }
+        const stores = [...new Set(item.links.map(a => a.store))];
+        if (stores.includes(itemReq.store)){
+          reject("This store already have a link");
         } else {
-          reject('Invalid data in post: you must send a valid link');
+          item.links.push(itemReq);
+          item.save(function(err){
+            if (err)
+              reject(err);
+            resolve("Item link added succesfully");
+          });
         }
+
       });
     });
   }
