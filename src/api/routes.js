@@ -25,7 +25,8 @@ router.route('/items/:id').get(itemsController.detail);
 router.route('/items').post(itemsController.insert);
 router.route('/items/:id').put(itemsController.update);
 router.route('/items/:id').delete(itemsController.remove);
-router.route('/items/:id/addLink').put(itemsController.addLink);
+router.route('/items/:id/links').put(itemsController.addLink);
+router.route('/items/:id/links/:store').delete(itemsController.delLink);
 
 router.route('/stores').get(storesController.stores);
 router.route('/stores/:id').get(storesController.detail);

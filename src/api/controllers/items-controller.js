@@ -52,3 +52,12 @@ exports.addLink = function(req, res){
     res.send(reason).status(400).end();
   });
 };
+
+exports.delLink = function(req, res){
+  let result = ItemsService.removeLink(req.params.id, req.params.store);
+  result.then( function (value) {
+    res.send(value).status(200).end();
+  }, function (reason) {
+    res.send(reason).status(400).end();
+  });
+};

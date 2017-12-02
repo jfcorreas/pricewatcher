@@ -81,6 +81,23 @@ const items = {
 
       });
     });
+  },
+
+  removeLink : function (itemId, store) {
+    return new Promise(function (resolve, reject) {
+      Item.findOneAndUpdate({itemId: itemId},
+            {'$pull': {'links':{ 'store': store}}},
+            function (err, item) {
+              if (err)
+                reject(err);
+              if (item){
+                resolve("Item link removed succesfully");
+              } else {
+                reject("The item " + itemId + " does not exist");
+              }
+            }
+      );
+    });
   }
 }
 
