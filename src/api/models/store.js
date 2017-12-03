@@ -1,15 +1,17 @@
-var mongoose     = require('mongoose');
-var Schema       = mongoose.Schema;
+const mongoose     = require('mongoose');
+const Schema       = mongoose.Schema;
 
-var StoreSchema   = new Schema({
+const CategorySchema = new Schema({
+    name: String,
+    url: String
+});
+
+const StoreSchema   = new Schema({
     storeId: {type: String, unique: true},
     fullname: String,
     hostURL: String,
     port: {type: Number, default: 80},
-    categories: [{
-      name: String,
-      url: String
-    }],
+    categories: [CategorySchema],
     itemRegex: String,
     priceRegex: String,
     discountRegex: String
