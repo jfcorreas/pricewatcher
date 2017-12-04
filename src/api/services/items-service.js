@@ -49,7 +49,14 @@ const items = {
         }
         Promise.all(promises)
           .then((results) => {
-            resolve(results);
+            for (var price of results){
+              item.registeredPrices.push(price);
+            }
+            item.save((err) => {
+              if (err)
+                reject(err);
+              resolve(results.length + " prices added");
+            });
           })
           .catch((err) => {
             reject(err);
