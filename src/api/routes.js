@@ -22,6 +22,7 @@ router.get('/', function(req, res) {
 
 router.route('/items').get(itemsController.items);
 router.route('/items/:id').get(itemsController.detail);
+router.route('/items/:id/prices').put(itemsController.checkStores);
 router.route('/items').post(itemsController.insert);
 router.route('/items/:id').put(itemsController.update);
 router.route('/items/:id').delete(itemsController.remove);

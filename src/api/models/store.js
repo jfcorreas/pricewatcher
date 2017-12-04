@@ -8,12 +8,12 @@ const CategorySchema = new Schema({
 
 const StoreSchema   = new Schema({
     storeId: {type: String, unique: true},
-    fullname: String,
-    hostURL: String,
+    fullname: {type: String, required: true},
+    hostURL: {type: String, required: true},
     port: {type: Number, default: 80},
     categories: [CategorySchema],
-    itemRegex: String,
-    priceRegex: String,
+    itemRegex: {type: String, required: true},
+    priceRegex: {type: String, required: true},
     discountRegex: String
 });
 

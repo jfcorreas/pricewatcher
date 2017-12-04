@@ -3,14 +3,14 @@ const Schema       = mongoose.Schema;
 
 let LinkSchema = new Schema({
   store: String,
-  url: String
+  urlPath: String
 });
 
 let PriceSchema = new Schema({
   store: String,
   price: Number,
   discount: Number,
-  date: {type: Date, default: new Date()}
+  timestamp: {type: Date, default: new Date()}
 });
 
 let ItemSchema   = new Schema({

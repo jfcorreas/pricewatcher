@@ -1,4 +1,6 @@
-let Item = require('../models/item');
+const Item = require('../models/item');
+const Store = require('../models/store');
+const StoreWatcher = require('./parseStore-service');
 
 const items = {
 
@@ -25,10 +27,6 @@ const items = {
     });
   },
 
-  checkItem : function(itemId) {
-    return ("TODO: check item with Id=" + itemId + " info in items and update in database ");
-  },
-
   getItem : function (itemId) {
     return new Promise(function (resolve, reject) {
       Item.findOne({itemId: itemId}, function (err, item) {
@@ -36,6 +34,26 @@ const items = {
           reject(err);
 
         resolve(item);
+      });
+    });
+  },
+
+  checkItemStores : function(itemId) {
+    return new Promise(function (resolve, reject) {
+      Item.findOne({itemId: itemId}, function (err, item) {
+        if (err)
+          reject(err);
+        let promises = [];
+        for (var link of item.links) {
+          promises.push(getStorePrice(link));
+        }
+        Promise.all(promises)
+          .then((results) => {
+            resolve(results);
+          })
+          .catch((err) => {
+            reject(err);
+          });
       });
     });
   },
@@ -114,7 +132,7 @@ function createItem (itemReq) {
     itemReq.links.forEach(function(linkReq) {
       let link = {};
       link.store = linkReq.store;
-      link.url = linkReq.url;
+      link.urlPath = linkReq.urlPath;
     });
   }
   item.registeredPrices = new Array();
@@ -129,4 +147,22 @@ function createItem (itemReq) {
   }
 
   return item;
+}
+
+function getStorePrice(link) {
+  return new Promise((resolve, reject) => {
+    Store.findOne({storeId: link.store}, function (err, store) {
+      if (err)
+        reject(err);
+      if (store) {
+        StoreWatcher.checkStore(link.urlPath, store, function(price, err){
+          if (err)
+           reject(err);
+          resolve(price);
+        });
+      } else {
+        reject("Store not found");
+      }
+    });
+  });
 }
