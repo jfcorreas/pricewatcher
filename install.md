@@ -1,5 +1,5 @@
 ```
-# ng new pricewatcher
+# mkdir pricewatcher
 # cd pricewatcher/
 # git status
 # git remote add origin https://github.com/jfcorreas/pricewatcher.git
