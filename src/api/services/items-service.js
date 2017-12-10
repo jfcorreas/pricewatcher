@@ -32,8 +32,11 @@ const items = {
       Item.findOne({itemId: itemId}, function (err, item) {
         if (err)
           reject(err);
-
-        resolve(item);
+        if (item) {
+          resolve(item);
+        } else {
+          reject("Item " + itemId + " does not exist");
+        }
       });
     });
   },
@@ -43,24 +46,28 @@ const items = {
       Item.findOne({itemId: itemId}, function (err, item) {
         if (err)
           reject(err);
-        let promises = [];
-        for (var link of item.links) {
-          promises.push(getStorePrice(link));
-        }
-        Promise.all(promises)
+        if (item) {
+          let promises = [];
+          for (var link of item.links) {
+            promises.push(getStorePrice(link));
+          }
+          Promise.all(promises)
           .then((results) => {
             for (var price of results){
               item.registeredPrices.push(price);
             }
             item.save((err) => {
               if (err)
-                reject(err);
+              reject(err);
               resolve(results.length + " prices added");
             });
           })
           .catch((err) => {
             reject(err);
           });
+        } else {
+          reject("Item " + itemId + " does not exist");
+        }
       });
     });
   },
@@ -92,16 +99,20 @@ const items = {
       Item.findOne({itemId: itemId}, function(err, item) {
         if (err)
           reject(err);
-        const stores = [...new Set(item.links.map(a => a.store))];
-        if (stores.includes(itemReq.store)){
-          reject("This store already have a link");
-        } else {
-          item.links.push(itemReq);
-          item.save(function(err){
-            if (err)
+        if (item) {
+          const stores = [...new Set(item.links.map(a => a.store))];
+          if (stores.includes(itemReq.store)){
+            reject("This store already have a link");
+          } else {
+            item.links.push(itemReq);
+            item.save(function(err){
+              if (err)
               reject(err);
-            resolve("Item link added succesfully");
-          });
+              resolve("Item link added succesfully");
+            });
+          }
+        } else {
+          reject("Item " + itemId + " does not exist");
         }
 
       });

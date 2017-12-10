@@ -61,7 +61,6 @@ function parseStore(store, content, callback){
   }
 
   if (price){
-    console.log(price_regex);
     let newPrice = {
       store: store.storeId,
       price: parseInt(price[1].replace(/,/g , ""))
