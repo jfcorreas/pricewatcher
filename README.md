@@ -1,38 +1,36 @@
-# Pricewatcher
+# pricewatcher
 
-API REST and Angular SPA for watch price changes of articles in online stores
+> API REST and Vue App for watch price changes of articles in online stores
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.5.
+## Build Setup
 
-## Development server
+``` bash
+# install dependencies
+npm install
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# Running API Development
+npm run-script start-api
 
-## Code scaffolding
+# Running API Production
+npm run-script start-api-pro
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+# serve with hot reload at localhost:8080
+npm run dev
 
-## Build
+# build for production with minification
+npm run build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+# build for production and view the bundle analyzer report
+npm run build --report
 
-## Running API Development
+# run unit tests
+npm run unit
 
-Run `npm run-script start-api` to execute the API in Development Environment.
+# run e2e tests
+npm run e2e
 
-## Running API Production
+# run all tests
+npm test
+```
 
-Run `npm run-script start-api-pro` to execute the API in Production Environment.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
