@@ -1,7 +1,7 @@
-const StoresService = require('../services/stores-service');
+const StoresService = require('../services/stores-service')
 
-exports.stores = function(req, res){
-  let result = StoresService.listStores();
+exports.stores = function(req, res) {
+  let result = StoresService.listStores()
   result.then( function (value) {
     res.send(value).status(200).end();
   }, function (reason) {
