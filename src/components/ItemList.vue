@@ -1,27 +1,28 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li v-for="item in items.slice(items.length - 10, items.length)">
-          {{item.itemId}} - {{item.registeredPrices[0].price}}
-      </li>
-    </ul>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <div class="items">
+      <ul>
+        <li v-for="item in items.slice(items.length - 10, items.length)">
+          <div class="item">
+
+            <div class="content">
+              <a class="header">{{item.itemId}}</a>
+              <div class="meta">
+                <span class="cinema">{{item.registeredPrices[0].price}}</span>
+              </div>
+              <div class="description">
+                <p></p>
+              </div>
+              <div class="extra">
+                <div class="ui label">{{item.registeredPrices[0].timestamp}}</div>
+                <div class="ui label"><i class="globe icon"></i>{{item.registeredPrices[0].timestamp}}</div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -34,19 +35,40 @@ export default {
       msg: 'Welcome to the Price Watcher',
       items: [],
       errors: []
+      /*
+      {
+          "_id": "5a2dad987acdfb1332de865a",
+          "model": "MU7005",
+          "brand": "Samsung",
+          "category": "Televisiones",
+          "itemId": "tv-samsung-mu7005",
+          "__v": 2,
+          "registeredPrices": [
+              {
+                  "store": "eci",
+                  "price": 999,
+                  "_id": "5a2daf1ac0e3a61473641d2f",
+                  "timestamp": "2017-12-10T22:02:43.963Z"
+              }
+          ],
+          "links": [
+              {
+                  "store": "eci",
+                  "urlPath": "/electronica/A22151758-tv-led-12446-cm-49-samsung-ue49mu7005-uhd-4k-hdr-1000-smart-tv-wi-fi/",
+                  "_id": "5a2dae950a38f413fe3eed10"
+              }
+          ]
+      }
+      */
     }
   },
   created () {
-    console.log('created')
     axios.get(`http://localhost:8080/api/v1/items/`)
     .then(response => {
-      // JSON responses are automatically parsed.
       this.items = response.data
-      console.log('Full ' + response)
     })
     .catch(e => {
       this.errors.push(e)
-      console.log('kk ' + e)
     })
   }
 }
