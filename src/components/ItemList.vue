@@ -1,28 +1,25 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <div class="items">
-      <ul>
-        <li v-for="item in items.slice(items.length - 10, items.length)">
-          <div class="item">
+  <div class="items">
+    <ul>
+      <li v-for="item in items.slice(items.length - 10, items.length)">
+        <div class="item">
 
-            <div class="content">
-              <a class="header">{{item.itemId}}</a>
-              <div class="meta">
-                <span class="cinema">{{item.registeredPrices[0].price}}</span>
-              </div>
-              <div class="description">
-                <p></p>
-              </div>
-              <div class="extra">
-                <div class="ui label">{{item.registeredPrices[0].timestamp}}</div>
-                <div class="ui label"><i class="globe icon"></i>{{item.registeredPrices[0].timestamp}}</div>
-              </div>
+          <div class="content">
+            <a class="header">{{item.itemId}}</a>
+            <div class="meta">
+              <span class="cinema">{{item.registeredPrices[0].price}}</span>
+            </div>
+            <div class="description">
+              <p></p>
+            </div>
+            <div class="extra">
+              <div class="ui label">{{item.registeredPrices[0].timestamp}}</div>
+              <div class="ui label"><i class="globe icon"></i>{{item.registeredPrices[0].timestamp}}</div>
             </div>
           </div>
-        </li>
-      </ul>
-    </div>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -32,7 +29,6 @@ export default {
   name: 'PriceWatcher',
   data () {
     return {
-      msg: 'Welcome to the Price Watcher',
       items: [],
       errors: []
       /*
